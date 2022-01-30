@@ -61,42 +61,21 @@
         border-radius: 15px 50px;
         margin: auto;
     }
+
+
     </style>
 
 </head>
 <body>
 <div>
-    <h1>Welcome!</h1><br>
+    <h1>Card number {{ card_id }} {{ side }}:</h1><br>
     <p>Here you can see all cards of user {{userID}}: You have {{ count }} cards.</p>
 
-    {% for card in cards %}
-    <div
-            class="flex flex-wrap items-end justify-start w-full transition duration-500 ease-in-out transform bg-black border-2 border-gray-600 rounded-lg hover:border-white ">
-        <div class="w-full xl:w-1/4 md:w-1/4">
-            <div class="relative flex flex-col h-full p-8 ">
-                <h2 class="mb-4 font-semibold tracking-widest text-white uppercase title-font">
-                    <div class="collection"> {{card.collection}}</div>
-                    <div class="stack"> {{card.stack}}</div>
-                </h2>
-                <p class="flex items-center mb-2 text-lg font-normal tracking-wide text-white">
-                                <span
-                                        class="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 mr-2 text-white rounded-full bg-blue-1300">
-
-                                </span>
-                    <div class="category"> {{card.category}}</div>
-                </p>
-            </div>
-        </div>
-        <div class="w-full xl:w-1/4 md:w-1/4 lg:ml-auto">
-                        <span
-                                class="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 mr-2 text-white rounded-full bg-blue-1300">
-                        </span>
-            <div class="front"> {{card.card.front}}</div>
-            <div class="back"> {{card.card.back}}</div>
-        </div>
-        <hr class="rounded">
-    </div>
-    {% endfor %}
+    {% if {{ side }} == "front" %}
+        <div class="front"> {{card.front}}</div>
+    {% else %}
+        <div class="back"> {{card.back}}</div>
+    {% endif %}
 </div>
 </body>
 </html>
