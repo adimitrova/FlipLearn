@@ -23,22 +23,9 @@
     p {
         font-size: 15pt;
     }
-    .collection {
-        color: #B91F1F;
-        font-size: 30px;
-        width: auto;
-        margin: auto;
-
-    }
-    .stack {
-        color: #F88615;
+    .invalid {
+        color: red;
         font-size: 25px;
-        width: auto;
-        margin: auto;
-    }
-    .category {
-        color: #1778AB;
-        font-size: 20px;
         width: auto;
         margin: auto;
     }
@@ -67,15 +54,18 @@
 
 </head>
 <body>
-<div>
-    <h1>Card number {{ card_id }} {{ side }}:</h1><br>
-    <p>Here you can see all cards of user {{userID}}: You have {{ count }} cards.</p>
+    <div class="flex flex-wrap items-end justify-start w-full transition duration-500 ease-in-out transform bg-black border-2 border-gray-600 rounded-lg hover:border-white ">
+        <h1>Card number {{ card_id }} {{ side }} side:</h1><br>
 
-    {% if {{ side }} == "front" %}
-        <div class="front"> {{card.front}}</div>
-    {% else %}
-        <div class="back"> {{card.back}}</div>
-    {% endif %}
-</div>
+        {% if side == "front" %}
+            <div class="front"> {{card.front}}</div>
+        {% elif side == "back" %}
+            <div class="back"> {{card.back}}</div>
+        {% else %}
+            <div class="invalid">Cards only have front and back sides.. sorry..</div>
+            <img src="https://media.istockphoto.com/vectors/frightened-emoticon-vector-id1163332940?k=20&m=1163332940&s=612x612&w=0&h=SP-3vUvJ2td7-4laE7aWESuo4Dya43QFj48D-0_IsTs="
+            width="150px">
+        {% endif %}
+    </div>
 </body>
 </html>

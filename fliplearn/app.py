@@ -56,13 +56,16 @@ def get_cards_for_user(request: Request, user_id: int):
 
 
 @app.get("/cards/{user_id}/card/{card_id}/{side}")
-def get_card_side(request: Request, user_id: int, card_id: int, side: str):
+async def get_card_side(request: Request, user_id: int, card_id: int, side: str = "back"):
     for card in cards1:
         if card.get('user_id') == user_id:
             user_cards = card.get('cards')
 
-    res = user_cards[card_id-1]['card'][side]
-    return {f"Card {card_id} {side}": res}
+    card = user_cards[card_id - 1]['card']
+    return TEMPLATES.TemplateResponse(
+        "single_card.html",
+        {"request": request, "userID": user_id, "card": card, "side": side, "card_id": card_id}
+    )
 
 
 if __name__ == "__main__":
