@@ -71,11 +71,3 @@ CARDS = [
      ]
      }
 ]
-
-if __name__ == '__main__':
-    for card in CARDS:
-        if card.get('user_id') == 2:
-            user_cards = card.get('cards')
-
-            side = user_cards[1]['card']['back']
-            print(side)

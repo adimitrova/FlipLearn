@@ -24,11 +24,6 @@ def login(request: Login):
     return {"message": "Authentication Failed"}
 
 
-# @app.get("/")
-# def home():
-#     return {"Cards": []}
-
-
 @app.route("/")
 def index(request: Request) -> dict:
     # Render HTML with count variable
