@@ -3,8 +3,7 @@ CARDS = [
         "cards": [
             {
                 "collection": "Natural Languages",
-                "stack": "Dutch",
-                "category": "nature",
+                "tag": "Dutch",
                 "card": {
                     "front": "ijsvogel",
                     "back": "kingfisher"
@@ -12,8 +11,7 @@ CARDS = [
             },
             {
                 "collection": "Natural Languages",
-                "stack": "Dutch",
-                "category": "nature",
+                "tag": "Dutch",
                 "card": {
                     "front": "roodboorstje",
                     "back": "robin"
@@ -21,30 +19,35 @@ CARDS = [
             },
             {
                 "collection": "Natural Languages",
-                "stack": "Dutch",
-                "category": "nature",
+                "tag": "Dutch",
                 "card": {
-                    "front": "hong",
+                    "front": "een hond",
                     "back": "dog"
                 }
             },
             {
                 "collection": "Natural Languages",
-                "stack": "Dutch",
-                "category": "nature",
+                "tag": "Dutch",
                 "card": {
-                    "front": "egel",
+                    "front": "de egel",
                     "back": "hedgehog"
                 }
-            }
+            },
+            {
+                "collection": "Birdwatching",
+                "tag": "waterbirds",
+                "card": {
+                    "front": "de ijsvogel",
+                    "back": "kingfisher"
+                }
+            },
         ]
     },
     {"user_id": 2,
      "cards": [
          {
              "collection": "Programming languages",
-             "stack": "Python",
-             "category": "coding",
+             "tag": "coding",
              "card": {
                  "front": "What is a class?",
                  "back": "A blueprint for creating objects"
@@ -52,8 +55,7 @@ CARDS = [
          },
          {
              "collection": "Programming languages",
-             "stack": "Python",
-             "category": "coding",
+             "tag": "coding",
              "card": {
                  "front": "What is Jinja2?",
                  "back": "A templating solution allowing you to generate HTML and other documents dynamically."
@@ -61,8 +63,7 @@ CARDS = [
          },
          {
              "collection": "Programming languages",
-             "stack": "Python",
-             "category": "coding",
+             "tag": "coding",
              "card": {
                  "front": "What is DDD?",
                  "back": "Domain Driven Design"

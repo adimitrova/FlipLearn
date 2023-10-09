@@ -1,8 +1,7 @@
 CARDS = [
     {
         "collection": "Natural Languages",
-        "stack": "Dutch",
-        "category": "nature",
+        "tag": "Dutch",
         "card": {
             "front": "ijsvogel",
             "back": "kingfisher"
@@ -10,8 +9,7 @@ CARDS = [
     },
     {
         "collection": "Natural Languages",
-        "stack": "Dutch",
-        "category": "nature",
+        "tag": "Dutch",
         "card": {
             "front": "roodboorstje",
             "back": "robin"
@@ -19,8 +17,7 @@ CARDS = [
     },
     {
         "collection": "Natural Languages",
-        "stack": "Dutch",
-        "category": "nature",
+        "tag": "Dutch",
         "card": {
             "front": "hong",
             "back": "dog"
@@ -28,8 +25,7 @@ CARDS = [
     },
     {
         "collection": "Natural Languages",
-        "stack": "Dutch",
-        "category": "nature",
+        "tag": "Dutch",
         "card": {
             "front": "egel",
             "back": "hedgehog"

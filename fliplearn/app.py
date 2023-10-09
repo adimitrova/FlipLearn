@@ -1,20 +1,20 @@
 import uvicorn
-from .contracts import Login, Card
+from fliplearn.contracts import Login, Card
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi import FastAPI, APIRouter, Query, HTTPException, Request
 from pathlib import Path
 # from .schemas import RecipeSearchResults, Recipe, RecipeCreate
-from .cards_data import CARDS as cards1
-from .cards_data2 import CARDS as cards2
+from fliplearn.cards_data import CARDS as cards1
+from fliplearn.cards_data2 import CARDS as cards2
 
 app = FastAPI(
     title="Flip Cards API", openapi_url="/openapi.json"
 )
-# app.mount("/", StaticFiles(directory="fliplearn/templates", html=True), name="static")
 api_router = APIRouter()
 BASE_PATH = Path(__file__).resolve().parent
 TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
+app.mount("/static", StaticFiles(directory="html_pages"), name="static")    # To load normal html files or images etc
 
 
 @app.post("/login")
@@ -27,9 +27,10 @@ def login(request: Login):
 @app.route("/")
 def index(request: Request) -> dict:
     # Render HTML with count variable
+    # TODO: Should show all collections to the user and option to create a new collection
     return TEMPLATES.TemplateResponse(
         "index.html",
-        {"request": request, "count": len(cards2), "cards": cards2},
+        {"request": request, "count": len(cards2), "user_id": "LLAMA", "cards": cards2},
     )
 
 
@@ -50,22 +51,54 @@ def get_cards_for_user(request: Request, user_id: int):
     )
 
 
+@app.get("/collections/{user_id}")
+def get_collections_for_user(request: Request, user_id: int):
+    for card in cards1:
+        if card.get('user_id') == user_id:
+            user_cards = card.get('cards')
+
+    collections = set()
+    for c in user_cards:
+        collections.add(c['collection'])
+
+    return TEMPLATES.TemplateResponse(
+        "collections.html",
+        {"request": request, "user_id": user_id, "collections": collections}
+    )
+
+
+@app.get("/collections/{user_id}/{collection_name}")
+def get_collections_for_user(request: Request, user_id: int, collection_name: str):
+    # current_user_cards =  # query db here
+    cards_in_collection = dict()
+    for item in cards1:
+        if item['user_id'] == user_id:
+            cards = item['cards']
+
+    for card in cards:
+        if card['collection'].lower() == collection_name.lower():
+            cards_in_collection.update(card)
+    return cards_in_collection
+
+
 @app.get("/cards/{user_id}/card/{card_id}/{side}")
 async def get_card_side(request: Request, user_id: int, card_id: int, side: str = "back"):
     for card in cards1:
         if card.get('user_id') == user_id:
             user_cards = card.get('cards')
 
-    card = user_cards[card_id - 1]['card']
+    full_card_data = user_cards[card_id - 1]
+    card = full_card_data['card']
     return TEMPLATES.TemplateResponse(
         "single_card.html",
-        {"request": request, "userID": user_id, "card": card, "side": side, "card_id": card_id}
+        {"request": request, "user_id": user_id, "card": card, "side": side, "card_id": card_id,
+         "tag": full_card_data.get('tag')}
     )
 
 
 if __name__ == "__main__":
-    # uvicorn.run("app:app")
-    uvicorn.run("app:app", host="http://127.0.0.1", port=8000, log_level="debug")
+    uvicorn.run("app:app")
+    # uvicorn.run("app:app", host="http://127.0.0.1", port=8000, log_level="debug")
 
 """
 Tutorials i'm following + URLs of other stuff:

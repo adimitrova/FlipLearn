@@ -33,7 +33,7 @@
         width: auto;
         margin: auto;
     }
-    .front {
+    .collection {
         background-color: aquamarine;
         max-width: 15%;
         height: auto;
@@ -46,20 +46,7 @@
         font-size: large;
     }
 
-    .back {
-        background-color: #F5EB05;
-        max-width: 15%;
-        height: auto;
-        border: 3px dotted grey;
-        padding: 25px;
-        margin: 10px;
-        word-wrap: break-word;
-        border-radius: 20px;
-        margin: auto;
-        font-size: large;
-    }
-
-    .card_info {
+    .info {
         max-width: 15%;
         height: auto;
         padding: 25px;
@@ -83,7 +70,7 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        font-size: large;
+        font-size: xx-large;
     }
 
     .button:hover {
@@ -94,45 +81,19 @@
 
 </head>
 <body>
-
     <div class="flex flex-wrap items-end justify-start w-full transition duration-500 ease-in-out transform bg-black border-2 border-gray-600 rounded-lg hover:border-white ">
-        <h1>{{ side|capitalize }}:</h1><br>
 
-        {% if side == "front" %}
-                <div class="front"> {{card.front|capitalize}}</div>
-        {% elif side == "back" %}
-                <div class="back"> {{card.back|capitalize}}</div>
-        {% else %}
-            <div class="invalid">Cards only have front and back sides.. sorry..</div>
-            <img src="https://media.istockphoto.com/vectors/frightened-emoticon-vector-id1163332940?k=20&m=1163332940&s=612x612&w=0&h=SP-3vUvJ2td7-4laE7aWESuo4Dya43QFj48D-0_IsTs="
-            width="150px">
-        {% endif %}
-        <br>
-        <div class="card_info">Card number {{ card_id }} </div>
-        <div class="card_info"> Category/tag: {{tag|upper}}</div>
-
-        {% if side == "front" %}
-            <a href="http://localhost:8000/cards/{{user_id}}/card/{{card_id}}/back">
-            <div class="button">Flip card</div>
+        {% for collection in collections %}
+            <a href="http://localhost:8000/collections/{{user_id}}/{{collection}}">
+                <h1> {{collection}} </h1>
+                <img src="https://s2982.pcdn.co/wp-content/uploads/2014/06/old-books.gif" width=300px/>
+                <div class="info">{{ collection }}</div>
             </a>
+            <br>
+        {% endfor %}
 
-        {% elif side == "back" %}
-            <a href="http://localhost:8000/cards/{{user_id}}/card/{{card_id}}/front">
-            <div class="button">Flip card</div>
-            </a>
-        {% endif %}
-        <br><br>
-
-        <a href="http://localhost:8000/cards/{{user_id}}/card/{{card_id - 1}}/front">
-            <div class="button">Previous card</div>
-        </a>
-
-        <a href="http://localhost:8000/cards/{{user_id}}/card/{{card_id + 1}}/front">
-            <div class="button">Next card</div>
-        </a>
-
-        <a href="http://localhost:8000/collections/{{user_id}}">
-            <div class="button">Back to collections</div>
+        <a href="http://localhost:8000/static/create_collection.html">
+            <div class="button">Create a new collection</div>
         </a>
     </div>
 </body>
