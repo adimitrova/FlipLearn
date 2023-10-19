@@ -67,7 +67,7 @@
 <body>
 <div>
     <h1>Welcome!</h1><br>
-    <p>Here you can see all cards of user {{user_id}}: You have {{ count }} cards.</p>
+    <p>Here you can see all cards of user #{{user_id}}: You have <{{ count }}> cards.</p>
 
     {% for card in cards %}
     <div class="flex flex-wrap items-end justify-start w-full transition duration-500 ease-in-out transform bg-black border-2 border-gray-600 rounded-lg hover:border-white ">

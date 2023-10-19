@@ -1,8 +1,11 @@
 import uvicorn
+from starlette.responses import FileResponse
+
+# from Fliplearn.fliplearn.contracts import Login, Card
 from fliplearn.contracts import Login, Card
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi import FastAPI, APIRouter, Query, HTTPException, Request
+from fastapi import FastAPI, APIRouter, Query, HTTPException, Request, Form
 from pathlib import Path
 # from .schemas import RecipeSearchResults, Recipe, RecipeCreate
 from fliplearn.cards_data import CARDS as cards1
@@ -14,23 +17,25 @@ app = FastAPI(
 api_router = APIRouter()
 BASE_PATH = Path(__file__).resolve().parent
 TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
-app.mount("/static", StaticFiles(directory="html_pages"), name="static")    # To load normal html files or images etc
+
+app.mount(path="/static",
+          app=StaticFiles(directory="static", html=True),
+          name="static")  # To load normal html files or images etc
 
 
 @app.post("/login")
-def login(request: Login):
-    if request.username == "ani" and request.password == "1234":
-        return {"message": "Success"}
-    return {"message": "Authentication Failed"}
+async def login(username: str = Form(...), password: str = Form):
+    print(password)
+    return {'username': username}
 
 
 @app.route("/")
-def index(request: Request) -> dict:
+def index(request: Request) -> Jinja2Templates.TemplateResponse:
     # Render HTML with count variable
     # TODO: Should show all collections to the user and option to create a new collection
     return TEMPLATES.TemplateResponse(
         "index.html",
-        {"request": request, "count": len(cards2), "user_id": "LLAMA", "cards": cards2},
+        {"request": request},
     )
 
 
@@ -52,7 +57,7 @@ def get_cards_for_user(request: Request, user_id: int):
 
 
 @app.get("/collections/{user_id}")
-def get_collections_for_user(request: Request, user_id: int):
+def get_collections_for_user(request: Request, user_id: int) -> Jinja2Templates.TemplateResponse:
     for card in cards1:
         if card.get('user_id') == user_id:
             user_cards = card.get('cards')
@@ -68,7 +73,7 @@ def get_collections_for_user(request: Request, user_id: int):
 
 
 @app.get("/collections/{user_id}/{collection_name}")
-def get_collections_for_user(request: Request, user_id: int, collection_name: str):
+def get_collections_for_user(request: Request, user_id: int, collection_name: str) -> dict:
     # current_user_cards =  # query db here
     cards_in_collection = dict()
     for item in cards1:
@@ -82,7 +87,8 @@ def get_collections_for_user(request: Request, user_id: int, collection_name: st
 
 
 @app.get("/cards/{user_id}/card/{card_id}/{side}")
-async def get_card_side(request: Request, user_id: int, card_id: int, side: str = "back"):
+async def get_card_side(request: Request, user_id: int, card_id: int,
+                        side: str = "back") -> Jinja2Templates.TemplateResponse:
     for card in cards1:
         if card.get('user_id') == user_id:
             user_cards = card.get('cards')
@@ -96,14 +102,9 @@ async def get_card_side(request: Request, user_id: int, card_id: int, side: str 
     )
 
 
-if __name__ == "__main__":
-    uvicorn.run("app:app")
-    # uvicorn.run("app:app", host="http://127.0.0.1", port=8000, log_level="debug")
+def run_app():
+    uvicorn.run("app:app", reload=True)
 
-"""
-Tutorials i'm following + URLs of other stuff:
-https://towardsdatascience.com/create-and-deploy-a-simple-web-application-with-flask-and-heroku-103d867298eb
-https://dashboard.heroku.com/apps
-https://christophergs.com/tutorials/ultimate-fastapi-tutorial-pt-6-jinja-templates/
-https://medium.com/@mikaelagurney/add-dynamic-components-to-your-html-templates-using-form-s-flask-and-jinja-59b4169ec3e1
-"""
+
+if __name__ == "__main__":
+    run_app()

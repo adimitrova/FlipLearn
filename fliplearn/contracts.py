@@ -2,6 +2,7 @@ from pydantic import BaseModel, HttpUrl
 from typing import Optional
 from typing import Sequence
 
+
 class CardData(BaseModel):
     front: str
     back: str
@@ -9,8 +10,7 @@ class CardData(BaseModel):
 
 class Card(BaseModel):
     collection: str
-    stack: str
-    category: str
+    tag: str
     card: CardData
 
 
