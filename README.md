@@ -8,4 +8,4 @@ Tutorials i'm following + URLs of other stuff:
 - [https://dashboard.heroku.com/apps](https://dashboard.heroku.com/apps)
 - [ultimate-fastapi-tutorial-pt-6-jinja-templates](https://christophergs.com/tutorials/ultimate-fastapi-tutorial-pt-6-jinja-templates/)
 - [add-dynamic-components-to-your-html-templates-using-form-s-flask-and-jinja](https://medium.com/@mikaelagurney/add-dynamic-components-to-your-html-templates-using-form-s-flask-and-jinja-59b4169ec3e1)
-
+- [jwt-and-cookie-auth-in-fastapi](https://retz.dev/blog/jwt-and-cookie-auth-in-fastapi)
