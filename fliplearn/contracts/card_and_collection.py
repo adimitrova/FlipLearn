@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from .base_model import BaseModel
 
 
 class Card(BaseModel):
@@ -10,7 +10,6 @@ class Card(BaseModel):
     user_id: str
     collection_id: str
     card_sides: CardSides
-    collection_title: str = None
     tag: str = None
 
 

@@ -1,5 +1,5 @@
 import uvicorn
-from starlette.responses import FileResponse
+import os
 
 # from Fliplearn.fliplearn.contracts import Login, Card
 from fliplearn.contracts import Login, Card
@@ -15,11 +15,13 @@ app = FastAPI(
     title="Flip Cards API", openapi_url="/openapi.json"
 )
 api_router = APIRouter()
+app_dir = os.path.dirname(__file__)     # abs path
 BASE_PATH = Path(__file__).resolve().parent
 TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
 
-app.mount(path="/static",
-          app=StaticFiles(directory="static", html=True),
+# Mount the full path of static files
+app.mount("/static",
+          StaticFiles(directory=os.path.join(app_dir, "static/"), html=True),
           name="static")  # To load normal html files or images etc
 
 

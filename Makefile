@@ -9,7 +9,6 @@ install:
 run:
 	./venv/bin/activate
 	cd fliplearn/
-	./venv/bin/python3 -m fliplearn
-	# uvicorn app:app --reload
+	uvicorn fliplearn.app:app --reload
 clean:
 	rm -rf ./venv/

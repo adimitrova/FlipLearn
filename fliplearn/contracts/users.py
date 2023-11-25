@@ -1,11 +1,10 @@
-from pydantic import BaseModel
-from typing import Optional, List
+from typing import Optional
 from datetime import datetime
-
-from fliplearn.contracts import Collection
+from .base_model import BaseModel
 
 
 class User(BaseModel):
+    user_id: str
     username: str
     password: str
     first_name: str
@@ -13,7 +12,6 @@ class User(BaseModel):
     email_address: str
     agree_to_terms: Optional[bool]
     registration_date: datetime
-    collections: List[Collection]
 
 
 class Login(BaseModel):
