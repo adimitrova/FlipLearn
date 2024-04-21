@@ -26,7 +26,7 @@ class FlipLearnDB:
                 self.connection, self.cursor = self._connect_to_db()
 
                 # Execute whatever is required
-                run_method(self, *args, **kwargs)  # self is important, otherwise errors
+                run_method(self, *args, **kwargs)  # NB! self is important, otherwise errors
             finally:
                 # close connection
                 self.cursor.close()
@@ -90,10 +90,10 @@ class FlipLearnDB:
             INSERT INTO {USERS_TB} 
                 (user_id, username, password, email_address, 
                 first_name, last_name, agree_to_terms, registration_date)
-            VALUES ([{user.user_id}], {user.username}, {user.password}, [{user.email_address}], 
-                    {user.first_name}, {user.last_name}, {user.agree_to_terms}, 
-                    datetime('now'))
+            VALUES ('{user.user_id}', '{user.username}', '{user.password}', '{user.email_address}', 
+                    '{user.first_name}', '{user.last_name}', '{user.agree_to_terms}', CURRENT_TIMESTAMP)
         """)
+        print(f'Inserted user "{user.username}" to database')
 
     @connect_and_disconnect_to_db
     def get_user_token_if_user_exists(self, username, password):
