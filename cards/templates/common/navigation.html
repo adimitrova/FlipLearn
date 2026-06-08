@@ -1,0 +1,11 @@
+<nav>
+    <a href="{% url 'home' %}">🏡️ Home</a>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'user-profile' %}">📕️ My Profile</a>
+        <a href="{% url 'user-logout' %}">️🚪 Log out</a>
+    {% else %}
+        <a href="{% url 'register-new-user' %}">🔑 Register</a>
+        <a href="{% url 'user-login' %}">👋 Log in</a>
+    {% endif %}
+</nav>

@@ -1,0 +1,19 @@
+<article>
+    {% for tag in card.tag.all %}
+        <p align="right">{{ tag.tag }} 🏷️</p>
+    {% endfor %}
+<!--    <p align="right">{{ card.tag_name }} 🏷️</p>     &lt;!&ndash;TODO: Make the tag clickable so it filters cards by tag&ndash;&gt;-->
+    <h3> 🤔 {{ card.question }} </h3>
+    {% if not check_card %}
+        <h4> 👉 {{ card.answer }}</h4>
+        <hr>
+        <a href="{% url 'card-update' card.id %}" class="button">Edit card</a>
+    {% else %}
+        <details>
+            <summary> Check the answer </summary>
+            <h4> 👉 {{ card.answer }}</h4>
+        </details>
+        {% include "cards/card_check_form.html" with solved=True %}
+        {% include "cards/card_check_form.html" with solved=False %}
+    {% endif %}
+</article>

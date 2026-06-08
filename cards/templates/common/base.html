@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--# import static files so we have the css file and images etc-->
+    {% load static %}
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="{% static 'user/css/main.css' %}">
+
+    <title>FlipCards</title>
+</head>
+<body>
+    <header>
+        <h1>Flipcards App</h1>
+        {% include "common/navigation.html" %}
+        <hr>
+<!--     TODO:   Make this conditional based on the view - if user is logged in, fetch their cards and display the menu-->
+        {% if user.is_authenticated %}
+            {% include "cards/box_navigation.html" %}
+        {% endif %}
+    </header>
+    <main>
+        {% block content %}
+            <h2>Welcome to the FlipCards app</h2>
+        {% endblock content %}
+    </main>
+
+</body>
+</html>

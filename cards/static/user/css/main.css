@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Ubuntu&family=Lemon&family=Patrick%20Hand%20SC:wght@400&display=swap');
+*{
+    font-family: 'Patrick Hand SC', sans-serif;
+}
+article, dialog, fieldset {
+    border: 2px dashed #6d7471;
+    padding: 1rem;
+    border-radius: var(--standard-border-radius);
+    margin-bottom: 1rem;
+    background: #c0fed8;
+    border-radius: 15px;
+}
+.button, a.button, button, input[type=button], input[type=reset], input[type=submit], label[type=button] {
+    border: 1px dashed  #000000;
+    background-color: #ffb300;
+    color: #000;
+    padding: .5rem .9rem;
+    text-decoration: none;
+    line-height: normal;
+}
+::backdrop, :root {
+    --accent-hover: #6d7471;
+}
+p {
+    margin: 10px 0;
+}
+h3 {
+    margin-top: 2rem;
+}
