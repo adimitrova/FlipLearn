@@ -1,0 +1,9 @@
+{% load cards_tags %}
+<!--# load the templatedtags/cards_tags.py template first-->
+
+<nav>
+    <a href="{% url 'card-list' %}">🗃️ All Cards 🗃️</a>
+
+    <!-- use our custom inclusion tag here-->
+    {% boxes_as_links %}
+</nav>

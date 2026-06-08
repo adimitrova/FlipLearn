@@ -1,0 +1,12 @@
+{% extends "common/base.html" %}
+{% load humanize %}
+
+{% block content %}
+    <h2> {{ box_number | ordinal }} Box </h2>
+    <mark>{{ cards_in_this_box | length }}</mark> Card{{ object_list | pluralize }} left in box.
+    <hr>
+    {% if check_card %}
+<!-- card.html doesn't know about ths custom template and the check_card variable, so we pass it w/ "with card=check_card"-->
+        {% include "cards/card.html" with card=check_card %}
+    {% endif %}
+{% endblock content %}

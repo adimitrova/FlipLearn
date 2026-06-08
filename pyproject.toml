@@ -1,0 +1,19 @@
+[project]
+name = "fliplearn"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12.10"
+dependencies = [
+	"Django",
+	"django-crispy-forms",
+	"django-crispy-bootstrap",
+	"crispy-bootstrap4",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+exclude = ["backup*", "logs*"]

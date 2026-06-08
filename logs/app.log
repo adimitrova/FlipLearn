@@ -1,0 +1,29 @@
+Listing all cards..
+Creating a new card..
+Updating card..
+Trying to log in with user's information.
+Logging out with user's information.
+Fetching user profile information.
+Listing all cards..
+Creating a new card..
+Updating card..
+Trying to log in with user's information.
+Logging out with user's information.
+Fetching user profile information.
+New user registration was submitted.
+New user registration form is valid and saved. Name: ani | Email: ani@gmail.com | Username: anii
+Fetching context data for BoxView
+Fetching context data for BoxView
+Fetching context data for BoxView
+Fetching context data for BoxView
+Fetching context data for BoxView
+Listing all cards..
+Creating a new card..
+Updating card..
+Trying to log in with user's information.
+Logging out with user's information.
+Fetching user profile information.
+New user registration was submitted.
+there's an error: {"password2": [{"message": "The password is too similar to the email.", "code": "password_too_similar"}, {"message": "This password is too short. It must contain at least 8 characters.", "code": "password_too_short"}, {"message": "This password is too common.", "code": "password_too_common"}]}. Name: bla | Email: bla@bla.com | Username: blabla
+New user registration was submitted.
+New user registration form is valid and saved. Name: bla | Email: bla@bla.com | Username: blabla
