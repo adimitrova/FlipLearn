@@ -6,9 +6,11 @@ __pycache__/
 *.pyd
 *.db
 *.sqlite3
+db.sqlite3-journal
 *.log
 *.env
-*.DS_Store
+.DS_Store
+local_settings.py
 .idea/
 .vscode/
 *.egg-info/
@@ -18,5 +20,3 @@ build/
 *.whl
 *.tar.gz
 *.zip
-
-    
